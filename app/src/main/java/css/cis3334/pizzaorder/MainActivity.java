@@ -58,18 +58,62 @@ public class MainActivity extends AppCompatActivity implements updateViewInterfa
     }
 
     public void onClickOrder(View view) {
+
+
         // ****** Students need to add code here to get information from the UI widgets...
 
         // ****** Students need to modify the call to OrderPizza to order the type of pizza the user selects using the UI widgets
-        String orderDescription = pizzaOrderSystem.OrderPizza("Peperoni", "large", false  );
+       if (rbSmall.isChecked()) {
+
+           if (chkbxCheese.isChecked()){
+               String orderDescription = pizzaOrderSystem.OrderPizza(spinnerToppings.getSelectedItem().toString(), "Small", true);
+               Toast.makeText(getApplicationContext(), "You have ordered a "+orderDescription , Toast.LENGTH_LONG).show();
+               txtPizzasOrdered.append(orderDescription+"\n");
+           }else{
 
 
-        //display a pop up message for a long period of time
-        Toast.makeText(getApplicationContext(), "You have ordered a "+orderDescription , Toast.LENGTH_LONG).show();
-        // get the order total from the order system
-        txtTotal.setText("Total Due: " + pizzaOrderSystem.getTotalBill().toString());
-        // add this pizza to the textview the lists the pizzas
-        txtPizzasOrdered.append(orderDescription+"\n");
+               String orderDescription = pizzaOrderSystem.OrderPizza(spinnerToppings.getSelectedItem().toString(), "Small", false);
+               Toast.makeText(getApplicationContext(), "You have ordered a "+orderDescription , Toast.LENGTH_LONG).show();
+               txtPizzasOrdered.append(orderDescription+"\n");
+           }
+
+           txtTotal.setText("Total Due: " + pizzaOrderSystem.getTotalBill().toString());
+
+       }else if (rbMedium.isChecked()){
+
+           if (chkbxCheese.isChecked()){
+               String orderDescription = pizzaOrderSystem.OrderPizza(spinnerToppings.getSelectedItem().toString(), "Medium", true);
+               Toast.makeText(getApplicationContext(), "You have ordered a "+orderDescription , Toast.LENGTH_LONG).show();
+               txtPizzasOrdered.append(orderDescription+"\n");
+           }else{
+
+
+               String orderDescription = pizzaOrderSystem.OrderPizza(spinnerToppings.getSelectedItem().toString(), "Medium", false);
+               Toast.makeText(getApplicationContext(), "You have ordered a "+orderDescription , Toast.LENGTH_LONG).show();
+               txtPizzasOrdered.append(orderDescription+"\n");
+           }
+
+           txtTotal.setText("Total Due: " + pizzaOrderSystem.getTotalBill().toString());
+
+       }else if (rbLarge.isChecked()){
+
+           if (chkbxCheese.isChecked()){
+               String orderDescription = pizzaOrderSystem.OrderPizza(spinnerToppings.getSelectedItem().toString(), "Large", true);
+               Toast.makeText(getApplicationContext(), "You have ordered a "+orderDescription , Toast.LENGTH_LONG).show();
+               txtPizzasOrdered.append(orderDescription+"\n");
+           }else{
+
+
+               String orderDescription = pizzaOrderSystem.OrderPizza(spinnerToppings.getSelectedItem().toString(), "Large", false);
+               Toast.makeText(getApplicationContext(), "You have ordered a "+orderDescription , Toast.LENGTH_LONG).show();
+               txtPizzasOrdered.append(orderDescription+"\n");
+           }
+
+           txtTotal.setText("Total Due: " + pizzaOrderSystem.getTotalBill().toString());
+
+       }else {
+           txtStatus.setText( "Please choose a redio button" + toString());
+       }
 
     }
 }
